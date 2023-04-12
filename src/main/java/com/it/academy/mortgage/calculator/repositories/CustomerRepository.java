@@ -1,12 +1,11 @@
-package com.it.academy.mortgage.calculator.repos;
+package com.it.academy.mortgage.calculator.repositories;
 
 import com.it.academy.mortgage.calculator.models.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
+    Customer findCustomerByName(String name);
 
 }
