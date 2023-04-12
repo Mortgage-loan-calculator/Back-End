@@ -4,6 +4,7 @@ import com.it.academy.mortgage.calculator.models.Customer;
 
 import com.it.academy.mortgage.calculator.services.CustomerService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class CustomerController {
         return customerService.fetchCustomersByName(name);
     }
     @GetMapping("/{id}")
-    public Customer fetchCustomerById(@PathVariable String id) {
+    public ResponseEntity<Customer> fetchCustomerById(@PathVariable String id) {
         return customerService.fetchCustomerById(id);
     }
 }
