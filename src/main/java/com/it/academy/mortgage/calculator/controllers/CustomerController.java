@@ -1,36 +1,44 @@
 package com.it.academy.mortgage.calculator.controllers;
 
 import com.it.academy.mortgage.calculator.models.Customer;
-import com.it.academy.mortgage.calculator.repos.CustomerRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.it.academy.mortgage.calculator.services.CustomerService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("customers")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
-    @Autowired
-    CustomerRepository repository;
-    @GetMapping()
-    public List<Customer> all(){
-        return repository.findAll();
+
+    private final CustomerService customerService;
+
+    public CustomerController(CustomerService service) {
+        this.customerService = service;
+    }
+
+    @GetMapping
+    public List<Customer> fetchAllCustomers(){
+        return customerService.fetchAllCustomers();
     }
 
     @PostMapping
-    public void save (@RequestBody Customer student){repository.save(student);
+    public void addCustomer (@RequestBody Customer student){customerService.addCustomer(student);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable final Integer id){
-        repository.deleteById(id);
+    public void deleteStudentById (@PathVariable String id){
+        customerService.deleteCustomerById(id);
     }
 
     @GetMapping("/byname")
-    public List<Customer>  getByName(@RequestParam() String name) {return  repository.getByName(name);}
+    public List<Customer>  fetchCustomersByName(@RequestParam() String name) {
+        return customerService.fetchCustomersByName(name);
+    }
+    @GetMapping("/{id}")
+    public Customer fetchCustomerById(@PathVariable String id) {
+        return customerService.fetchCustomerById(id);
+    }
 }
