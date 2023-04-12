@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:17-slim
 
 # Set the working directory
 WORKDIR /app
