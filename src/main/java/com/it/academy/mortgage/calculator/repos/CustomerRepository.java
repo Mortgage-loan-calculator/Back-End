@@ -7,8 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, String> {
 
-    @org.springframework.data.jdbc.repository.query.Query(value = "SELECT * FROM Customer c WHERE c.name= :name")
-    List<Customer> getByName(@Param("name") String name);
 }

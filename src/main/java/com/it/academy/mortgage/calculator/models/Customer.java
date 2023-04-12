@@ -2,6 +2,8 @@ package com.it.academy.mortgage.calculator.models;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,18 +11,18 @@ import java.time.LocalDateTime;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
     private String name;
     private String number;
     private String email;
     private String ipAddress;
-    private LocalDateTime time;
+    private final LocalDateTime time;
 
     public Customer() {
         this.time = LocalDateTime.now();
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -44,7 +46,7 @@ public class Customer {
         return time;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
