@@ -13,7 +13,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
-    private String number;
+    private String phoneNumber;
     private String email;
     private String ipAddress;
     private final LocalDateTime time;
@@ -31,7 +31,7 @@ public class Customer {
     }
 
     public String getNumber() {
-        return number;
+        return phoneNumber;
     }
 
     public String getEmail() {
@@ -54,8 +54,8 @@ public class Customer {
         this.name = name;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public void setEmail(String email) {
