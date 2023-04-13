@@ -13,8 +13,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
+    @Column(name = "number")
     private String phoneNumber;
     private String email;
+    @Column(name = "ip_address")
     private String ipAddress;
     private final LocalDateTime time;
 
@@ -64,5 +66,17 @@ public class Customer {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", time=" + time +
+                '}';
     }
 }

@@ -24,7 +24,9 @@ public class CustomerService {
 
     public List<Customer> fetchAllCustomers() {return customerRepository.findAll();}
 
-    public void addCustomer(Customer newCustomer) {customerRepository.save(newCustomer);}
+    public void addCustomer(Customer newCustomer) {
+        System.out.println(newCustomer);
+        customerRepository.save(newCustomer);}
 
     public void deleteCustomerById(String id) {customerRepository.deleteById(id);}
 
