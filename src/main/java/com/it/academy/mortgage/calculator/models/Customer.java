@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,6 +23,15 @@ public class Customer {
     private final LocalDateTime time;
 
     public Customer() {
+        this.time = LocalDateTime.now();
+    }
+
+    public Customer(String id, String name, String phoneNumber, String email) throws UnknownHostException {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.ipAddress = InetAddress.getLocalHost().toString();;
         this.time = LocalDateTime.now();
     }
 
