@@ -25,11 +25,11 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void addCustomer (@RequestBody Customer student){customerService.addCustomer(student);
+    public void addCustomer (@RequestBody Customer customer){customerService.addCustomer(customer);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudentById (@PathVariable String id){
+    public void deleteStudentById (@PathVariable (name="id") String id){
         customerService.deleteCustomerById(id);
     }
 
