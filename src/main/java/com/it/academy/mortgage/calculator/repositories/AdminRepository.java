@@ -1,4 +1,4 @@
-package com.it.academy.mortgage.calculator.repos;
+package com.it.academy.mortgage.calculator.repositories;
 
 import com.it.academy.mortgage.calculator.models.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;

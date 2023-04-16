@@ -1,7 +1,7 @@
 package com.it.academy.mortgage.calculator.services;
 
 import com.it.academy.mortgage.calculator.models.Admin;
-import com.it.academy.mortgage.calculator.repos.AdminRepository;
+import com.it.academy.mortgage.calculator.repositories.AdminRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

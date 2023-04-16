@@ -26,11 +26,10 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/adminRegistration", "/customers")
-                .hasAuthority("Admin")
+                //.requestMatchers("/adminRegistration", "/customers")
+                //.hasAuthority("Admin")
                 .anyRequest()
-                .permitAll().and()
-                .formLogin();
+                .permitAll();
 
         return http.build();
     }
