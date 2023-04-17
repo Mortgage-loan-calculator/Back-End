@@ -60,9 +60,9 @@ public class SecurityConfiguration {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/signin").permitAll()
-                .requestMatchers("/auth/signup").authenticated()
-                .requestMatchers("/customers").authenticated()
+                //.requestMatchers("/auth/signin").permitAll()
+                //.requestMatchers("/auth/signup").authenticated()
+                //.requestMatchers("/customers").authenticated()
                 .anyRequest().permitAll();
 
         http.authenticationProvider(authenticationProvider());
