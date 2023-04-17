@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.it.academy.mortgage.calculator.CalculateControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-13T13:51:06" hostname="LAPTOP-6JJKAEQV" time="2.885">
+  <properties/>
+  <testcase name="testCalculateEndpoint()" classname="com.it.academy.mortgage.calculator.CalculateControllerTest" time="2.885"/>
+  <system-out><![CDATA[16:51:03.889 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [CalculateControllerTest]: using SpringBootContextLoader
+16:51:03.908 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+16:51:03.908 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: CalculateControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:51:03.986 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Using ContextCustomizers for test class [CalculateControllerTest]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+16:51:04.049 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [D:\academy\Back-End\build\classes\java\main\com\it\academy\mortgage\calculator\Application.class]
+16:51:04.049 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.it.academy.mortgage.calculator.Application for test class com.it.academy.mortgage.calculator.CalculateControllerTest
+16:51:04.096 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Using TestExecutionListeners for test class [CalculateControllerTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+16:51:04.096 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [CalculateControllerTest], class annotated with @DirtiesContext [false] with mode [null]
+16:51:04.112 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener -- Performing dependency injection for test class com.it.academy.mortgage.calculator.CalculateControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.5)
+
+2023-04-13T16:51:04.551+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Starting CalculateControllerTest using Java 17.0.1 with PID 6736 (started by tkaze in D:\academy\Back-End)
+2023-04-13T16:51:04.551+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : No active profile set, falling back to 1 default profile: "default"
+2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2023-04-13T16:51:06.112+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Started CalculateControllerTest in 1.933 seconds (process running for 3.406)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
