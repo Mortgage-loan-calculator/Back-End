@@ -1,11 +1,19 @@
-package com.it.academy.mortgage.calculator.dto;
+package com.it.academy.mortgage.calculator.models;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class CalculateFormDto {
+@Entity(name = "calculate_form")
+@AllArgsConstructor
+@NoArgsConstructor
+public class CalculateForm {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int homePrice;
     private int monthlyFamilyIncome;
     private int loanTerm;
@@ -13,19 +21,14 @@ public class CalculateFormDto {
     private boolean haveChildren;
     private String city;
 
-    public CalculateFormDto(){}
+    @OneToOne(mappedBy = "calculateForm", cascade = CascadeType.ALL)
+    private CalculateResults calculateResults;
 
-    public CalculateFormDto(int homePrice, int monthlyFamilyIncome, int loanTerm) {
-        this.homePrice = homePrice;
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
-        this.loanTerm = loanTerm;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,36 +79,4 @@ public class CalculateFormDto {
     public void setCity(String city) {
         this.city = city;
     }
-
-//    public double getMaxLoan() {
-//        return maxLoan;
-//    }
-//
-//    public void setMaxLoan(double maxLoan) {
-//        this.maxLoan = maxLoan;
-//    }
-//
-//    public double getTotalInterestPaid() {
-//        return totalInterestPaid;
-//    }
-//
-//    public void setTotalInterestPaid(double totalInterestPaid) {
-//        this.totalInterestPaid = totalInterestPaid;
-//    }
-//
-//    public double getAgreementFee() {
-//        return agreementFee;
-//    }
-//
-//    public void setAgreementFee(double agreementFee) {
-//        this.agreementFee = agreementFee;
-//    }
-//
-//    public double getTotalPaymentSum() {
-//        return totalPaymentSum;
-//    }
-//
-//    public void setTotalPaymentSum(double totalPaymentSum) {
-//        this.totalPaymentSum = totalPaymentSum;
-//    }
 }

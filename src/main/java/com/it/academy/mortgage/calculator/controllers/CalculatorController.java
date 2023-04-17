@@ -2,7 +2,7 @@ package com.it.academy.mortgage.calculator.controllers;
 
 import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import com.it.academy.mortgage.calculator.dto.CalculateResultsDto;
-import com.it.academy.mortgage.calculator.services.CalculatorService;
+import com.it.academy.mortgage.calculator.services.CalculatorResultsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,12 @@ import java.io.IOException;
 @CrossOrigin(origins = "http://localhost:4200")
 public class CalculatorController {
 
-    private final CalculatorService calculatorService = new CalculatorService();
+    private final CalculatorResultsService calculatorResultsService;
+
+    public CalculatorController(CalculatorResultsService calculatorResultsService) {
+        this.calculatorResultsService = calculatorResultsService;
+    }
+
     Logger logger = LoggerFactory.getLogger(CalculatorController.class);
 
     @PostMapping
@@ -32,10 +37,10 @@ public class CalculatorController {
         CalculateResultsDto calculateResultsDto = new CalculateResultsDto();
         try {
 
-            calculateResultsDto.setMaxLoan(calculatorService.maxLoan(calculateFormDto));
-            calculateResultsDto.setTotalInterestPaid(calculatorService.totalInterestPaid(calculateFormDto));
-            calculateResultsDto.setAgreementFee(calculatorService.agreementFee(calculateFormDto));
-            calculateResultsDto.setTotalPaymentSum(calculatorService.totalPaymentSum(calculateFormDto));
+            calculateResultsDto.setMaxLoan(calculatorResultsService.maxLoan(calculateFormDto));
+            calculateResultsDto.setTotalInterestPaid(calculatorResultsService.totalInterestPaid(calculateFormDto));
+            calculateResultsDto.setAgreementFee(calculatorResultsService.agreementFee(calculateFormDto));
+            calculateResultsDto.setTotalPaymentSum(calculatorResultsService.totalPaymentSum(calculateFormDto));
         } catch (IOException exception) {
             logger.error("Error: " + exception);
         }

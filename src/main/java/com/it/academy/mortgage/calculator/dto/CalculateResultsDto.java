@@ -2,10 +2,20 @@ package com.it.academy.mortgage.calculator.dto;
 
 public class CalculateResultsDto {
 
+    private Long id;
     private double maxLoan;
     private double totalInterestPaid;
     private double agreementFee;
     private double totalPaymentSum;
+    private Long calculateFormId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public double getMaxLoan() {
         return maxLoan;
@@ -37,5 +47,13 @@ public class CalculateResultsDto {
 
     public void setTotalPaymentSum(double totalPaymentSum) {
         this.totalPaymentSum = totalPaymentSum;
+    }
+
+    public Long getCalculateFormId() {
+        return calculateFormId;
+    }
+
+    public void setCalculateFormId(Long calculateFormId) {
+        this.calculateFormId = calculateFormId;
     }
 }
