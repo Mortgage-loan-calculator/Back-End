@@ -1,6 +1,7 @@
 package com.it.academy.mortgage.calculator.controllers;
 
-import com.it.academy.mortgage.calculator.models.CalculateFormDto;
+import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
+import com.it.academy.mortgage.calculator.dto.CalculateResultsDto;
 import com.it.academy.mortgage.calculator.services.CalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController()
-@RequestMapping("calculate")
+@RequestMapping("/api/calculate")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CalculatorController {
 
     private final CalculatorService calculatorService = new CalculatorService();
@@ -22,21 +24,22 @@ public class CalculatorController {
     }
 
     @GetMapping()
-    public CalculateFormDto sendFormData(@RequestParam("homePrice") int homePrice,
+    public CalculateResultsDto sendFormData(@RequestParam("homePrice") int homePrice,
                                          @RequestParam("monthlyIncome") int monthlyIncome,
                                          @RequestParam("loanTerm") int loanTerm) {
 
         CalculateFormDto calculateFormDto = new CalculateFormDto(homePrice, monthlyIncome, loanTerm);
+        CalculateResultsDto calculateResultsDto = new CalculateResultsDto();
         try {
 
-            calculateFormDto.setMaxLoan(calculatorService.maxLoan(calculateFormDto));
-            calculateFormDto.setTotalInterestPaid(calculatorService.totalInterestPaid(calculateFormDto));
-            calculateFormDto.setAgreementFee(calculatorService.agreementFee(calculateFormDto));
-            calculateFormDto.setTotalPaymentSum(calculatorService.totalPaymentSum(calculateFormDto));
+            calculateResultsDto.setMaxLoan(calculatorService.maxLoan(calculateFormDto));
+            calculateResultsDto.setTotalInterestPaid(calculatorService.totalInterestPaid(calculateFormDto));
+            calculateResultsDto.setAgreementFee(calculatorService.agreementFee(calculateFormDto));
+            calculateResultsDto.setTotalPaymentSum(calculatorService.totalPaymentSum(calculateFormDto));
         } catch (IOException exception) {
             logger.error("Error: " + exception);
         }
 
-        return calculateFormDto;
+        return calculateResultsDto;
     }
 }
