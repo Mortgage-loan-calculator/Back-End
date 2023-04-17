@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController()
-@RequestMapping("/api/calculate")
+@RequestMapping("calculate")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CalculatorController {
 
