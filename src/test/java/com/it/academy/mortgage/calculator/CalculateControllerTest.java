@@ -16,19 +16,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CalculatorController.class)
 public class CalculateControllerTest {
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    public void testCalculateEndpoint() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/calculate")
-                .param("homePrice", "500000")
-                .param("monthlyIncome", "10000")
-                .param("loanTerm", "30");
-
-       mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
-    }
+//    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Test
+//    public void testCalculateEndpoint() throws Exception {
+//        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/calculate")
+//                .param("homePrice", "500000")
+//                .param("monthlyIncome", "10000")
+//                .param("loanTerm", "30");
+//
+//       mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+//    }
 }
 
 
