@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("customers")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://mortgage-loan-calculator-front-end2.onrender.com"})
 public class CustomerController {
 
     private final CustomerService customerService;
