@@ -1,4 +1,4 @@
-package com.it.academy.mortgage.calculator.models;
+package com.it.academy.mortgage.calculator.dto;
 
 public class CalculateFormDto {
 

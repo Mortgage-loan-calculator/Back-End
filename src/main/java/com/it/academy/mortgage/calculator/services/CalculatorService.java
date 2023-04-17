@@ -1,6 +1,6 @@
 package com.it.academy.mortgage.calculator.services;
 
-import com.it.academy.mortgage.calculator.models.CalculateFormDto;
+import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
