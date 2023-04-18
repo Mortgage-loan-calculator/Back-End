@@ -43,7 +43,7 @@ public class Customer {
         return name;
     }
 
-    public String getNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -67,7 +67,7 @@ public class Customer {
         this.name = name;
     }
 
-    public void setNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
