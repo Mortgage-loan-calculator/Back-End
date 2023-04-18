@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @RestController()
 @RequestMapping("calculate")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://mortgage-loan-calculator-front-end2.onrender.com"})
 public class CalculatorController {
 
     private final CalculatorService calculatorService = new CalculatorService();
