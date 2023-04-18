@@ -14,9 +14,8 @@ public class CalculateFormDto {
     private double agreementFee;
     private double totalPaymentSum;
 
-    public CalculateFormDto(int homePrice, int monthlyFamilyIncome, int loanTerm) {
+    public CalculateFormDto(int homePrice, int loanTerm) {
         this.homePrice = homePrice;
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
         this.loanTerm = loanTerm;
     }
 
