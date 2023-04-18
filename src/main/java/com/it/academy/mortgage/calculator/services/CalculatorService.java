@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class CalculatorService {
 
-    private static double getEuriborRates() throws IOException {
+    public static double getEuriborRates() throws IOException {
         Document document = Jsoup.connect("https://www.swedbank.lt/private/home/more/pricesrates/loaninterests?language=EN").get();
         Element yearElement = document.select("#mainForm > section > ui-table > table > tbody > tr:nth-child(2) > td:nth-child(3)").first();
         return Double.parseDouble(yearElement.text().replace("%", ""));

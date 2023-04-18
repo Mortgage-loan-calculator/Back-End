@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">2.885s</div>
+<div class="counter">0.206s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testCalculateEndpoint()</td>
-<td class="success">2.885s</td>
+<td class="success">testHandleEuriborException()</td>
+<td class="success">0.206s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,15 +87,15 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:51:03.889 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [CalculateControllerTest]: using SpringBootContextLoader
-16:51:03.908 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-16:51:03.908 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: CalculateControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:51:03.986 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Using ContextCustomizers for test class [CalculateControllerTest]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
-16:51:04.049 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [D:\academy\Back-End\build\classes\java\main\com\it\academy\mortgage\calculator\Application.class]
-16:51:04.049 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.it.academy.mortgage.calculator.Application for test class com.it.academy.mortgage.calculator.CalculateControllerTest
-16:51:04.096 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper -- Using TestExecutionListeners for test class [CalculateControllerTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-16:51:04.096 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [CalculateControllerTest], class annotated with @DirtiesContext [false] with mode [null]
-16:51:04.112 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener -- Performing dependency injection for test class com.it.academy.mortgage.calculator.CalculateControllerTest
+<pre>15:08:36.361 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [CalculateControllerTest]: using SpringBootContextLoader
+15:08:36.370 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:08:36.371 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.it.academy.mortgage.calculator.CalculateControllerTest]: CalculateControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:08:36.402 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [CalculateControllerTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+15:08:36.503 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [D:\academy\Back-End\build\classes\java\main\com\it\academy\mortgage\calculator\Application.class]
+15:08:36.505 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.it.academy.mortgage.calculator.Application for test class com.it.academy.mortgage.calculator.CalculateControllerTest
+15:08:36.654 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [CalculateControllerTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+15:08:36.656 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [CalculateControllerTest], class annotated with @DirtiesContext [false] with mode [null]
+15:08:36.680 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener -- Performing dependency injection for test class com.it.academy.mortgage.calculator.CalculateControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -105,12 +105,31 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.5)
 
-2023-04-13T16:51:04.551+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Starting CalculateControllerTest using Java 17.0.1 with PID 6736 (started by tkaze in D:\academy\Back-End)
-2023-04-13T16:51:04.551+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-04-13T16:51:06.065+03:00  INFO 6736 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2023-04-13T16:51:06.112+03:00  INFO 6736 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Started CalculateControllerTest in 1.933 seconds (process running for 3.406)
+2023-04-18T15:08:37.143+03:00  INFO 15872 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Starting CalculateControllerTest using Java 17.0.1 with PID 15872 (started by tkaze in D:\academy\Back-End)
+2023-04-18T15:08:37.145+03:00  INFO 15872 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-04-18T15:08:38.309+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-04-18T15:08:38.312+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2023-04-18T15:08:38.375+03:00  INFO 15872 --- [    Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.it.academy.mortgage.calculator.repos.CustomerRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2023-04-18T15:08:38.376+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 0 JDBC repository interfaces.
+2023-04-18T15:08:38.396+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2023-04-18T15:08:38.398+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-18T15:08:38.439+03:00  INFO 15872 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 1 JPA repository interfaces.
+2023-04-18T15:08:39.258+03:00  INFO 15872 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-04-18T15:08:39.277+03:00  INFO 15872 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-18T15:08:39.278+03:00  INFO 15872 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-18T15:08:39.445+03:00  INFO 15872 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-18T15:08:39.448+03:00  INFO 15872 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2271 ms
+2023-04-18T15:08:39.692+03:00  INFO 15872 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-18T15:08:39.843+03:00  INFO 15872 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-18T15:08:40.349+03:00  INFO 15872 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-18T15:08:41.632+03:00  INFO 15872 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e85e3f1
+2023-04-18T15:08:41.633+03:00  INFO 15872 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-18T15:08:41.776+03:00  INFO 15872 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-04-18T15:08:42.799+03:00  INFO 15872 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-18T15:08:42.809+03:00  INFO 15872 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-18T15:08:43.128+03:00  WARN 15872 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-18T15:08:43.680+03:00  INFO 15872 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 50822 (http) with context path ''
+2023-04-18T15:08:43.690+03:00  INFO 15872 --- [    Test worker] c.i.a.m.c.CalculateControllerTest        : Started CalculateControllerTest in 6.97 seconds (process running for 8.648)
 </pre>
 </span>
 </div>
@@ -122,7 +141,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.6.1</a> at Apr 13, 2023, 4:51:09 PM</p>
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at Apr 18, 2023, 3:08:44 PM</p>
 </div>
 </div>
 </body>
