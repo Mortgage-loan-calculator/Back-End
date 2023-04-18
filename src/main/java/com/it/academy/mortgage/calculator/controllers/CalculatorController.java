@@ -25,10 +25,9 @@ public class CalculatorController {
 
     @GetMapping()
     public CalculateResultsDto sendFormData(@RequestParam("homePrice") int homePrice,
-                                         @RequestParam("monthlyIncome") int monthlyIncome,
                                          @RequestParam("loanTerm") int loanTerm) {
 
-        CalculateFormDto calculateFormDto = new CalculateFormDto(homePrice, monthlyIncome, loanTerm);
+        CalculateFormDto calculateFormDto = new CalculateFormDto(homePrice, loanTerm);
         CalculateResultsDto calculateResultsDto = new CalculateResultsDto();
         try {
 
