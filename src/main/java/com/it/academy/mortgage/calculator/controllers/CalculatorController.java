@@ -2,9 +2,11 @@ package com.it.academy.mortgage.calculator.controllers;
 
 import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import com.it.academy.mortgage.calculator.dto.CalculateResultsDto;
+import com.it.academy.mortgage.calculator.exceptions.CalculatorException;
 import com.it.academy.mortgage.calculator.services.CalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,6 @@ import java.io.IOException;
 public class CalculatorController {
 
     private final CalculatorService calculatorService = new CalculatorService();
-    Logger logger = LoggerFactory.getLogger(CalculatorController.class);
 
     @PostMapping
     public ResponseEntity<CalculateFormDto> getFormData(@RequestBody CalculateFormDto formData) {
@@ -36,9 +37,14 @@ public class CalculatorController {
             calculateResultsDto.setAgreementFee(calculatorService.agreementFee(calculateFormDto));
             calculateResultsDto.setTotalPaymentSum(calculatorService.totalPaymentSum(calculateFormDto));
         } catch (IOException exception) {
-            logger.error("Error: " + exception);
+            throw new CalculatorException();
         }
 
         return calculateResultsDto;
+    }
+
+    @ExceptionHandler(CalculatorException.class)
+    public ResponseEntity<String> handleEuriborException(CalculatorException calculatorException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(calculatorException.getMessage());
     }
 }
