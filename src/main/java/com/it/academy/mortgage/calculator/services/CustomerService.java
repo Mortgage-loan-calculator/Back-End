@@ -2,10 +2,9 @@ package com.it.academy.mortgage.calculator.services;
 
 import com.it.academy.mortgage.calculator.exceptions.CustomerNotFoundException;
 import com.it.academy.mortgage.calculator.models.Customer;
-import com.it.academy.mortgage.calculator.repos.CustomerRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.it.academy.mortgage.calculator.repositories.CustomerRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -34,7 +33,7 @@ public class CustomerService {
         return customerRepository.findAll().stream().filter(customer -> Objects.equals(customer.getName(), name)).collect(Collectors.toList());
     };
 
-    public Customer fetchCustomerById(String id) {
-        return customerRepository.findById(id).orElseThrow(()->new CustomerNotFoundException(id));
+    public ResponseEntity<Customer> fetchCustomerById(String id) throws CustomerNotFoundException {
+        return new ResponseEntity<>(customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id)), HttpStatus.ACCEPTED);
     }
 }
