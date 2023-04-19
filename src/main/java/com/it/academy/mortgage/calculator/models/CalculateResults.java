@@ -1,7 +1,18 @@
-package com.it.academy.mortgage.calculator.dto;
+package com.it.academy.mortgage.calculator.models;
 
-public class CalculateResultsDto {
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity(name = "calculate_results")
+@AllArgsConstructor
+@NoArgsConstructor
+public class CalculateResults {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double maxLoan;
     private double totalInterestPaid;
@@ -15,6 +26,7 @@ public class CalculateResultsDto {
     public void setId(Long id) {
         this.id = id;
     }
+
     public double getMaxLoan() {
         return maxLoan;
     }
@@ -46,4 +58,5 @@ public class CalculateResultsDto {
     public void setTotalPaymentSum(double totalPaymentSum) {
         this.totalPaymentSum = totalPaymentSum;
     }
+
 }
