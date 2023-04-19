@@ -42,9 +42,4 @@ public class CalculatorController {
 
         return calculateResultsDto;
     }
-
-    @ExceptionHandler(CalculatorException.class)
-    public ResponseEntity<String> handleEuriborException(CalculatorException calculatorException) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(calculatorException.getMessage());
-    }
 }

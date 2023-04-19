@@ -20,7 +20,7 @@ public class CalculatorService {
     }
 
     public double sumOfTotalInterestPaid(CalculateFormDto calculateFormDto) {
-        return maxLoan(calculateFormDto) / 360;
+        return maxLoan(calculateFormDto) / (calculateFormDto.getLoanTerm() * 12);
     }
 
     public double totalInterestPaid(CalculateFormDto calculateFormDto) throws IOException {
