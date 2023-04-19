@@ -25,12 +25,13 @@ public class CalculateFormService {
         return calculateFormMapper.toDto(calculateForm);
     }
     public List<CalculateFormDto> getAllLoanDetailsList(){
-        List<CalculateForm> loanDetails = (ArrayList<CalculateForm>) calculateFormRepository.findAll();
+        List<CalculateForm> loanDetails = calculateFormRepository.findAll();
         return calculateFormMapper.toDtoList(loanDetails);
     }
     public CalculateFormDto saveLoanDetails (CalculateFormDto calculateFormDto){
         CalculateForm calculateForm = calculateFormMapper.fromDto(calculateFormDto);
         calculateFormRepository.save(calculateForm);
+        System.out.println(calculateForm);
         return calculateFormMapper.toDto(calculateForm);
     }
     public void deleteCalculateForm (Long id){

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @RestController()
 @RequestMapping("calculate")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://mortgage-loan-calculator-front-end2.onrender.com"})
 public class CalculatorController {
 
     private final CalculatorResultsService calculatorResultsService;
@@ -23,17 +23,16 @@ public class CalculatorController {
 
     Logger logger = LoggerFactory.getLogger(CalculatorController.class);
 
-    @PostMapping
+   /* @PostMapping
     public ResponseEntity<CalculateFormDto> getFormData(@RequestBody CalculateFormDto formData) {
         return ResponseEntity.ok(formData);
-    }
+    }*/ //perkelta i calculateformcontroller
 
     @GetMapping()
     public CalculateResultsDto sendFormData(@RequestParam("homePrice") int homePrice,
-                                         @RequestParam("monthlyIncome") int monthlyIncome,
-                                         @RequestParam("loanTerm") int loanTerm) {
+                                            @RequestParam("loanTerm") int loanTerm) {
 
-        CalculateFormDto calculateFormDto = new CalculateFormDto(homePrice, monthlyIncome, loanTerm);
+        CalculateFormDto calculateFormDto = new CalculateFormDto(homePrice, loanTerm);
         CalculateResultsDto calculateResultsDto = new CalculateResultsDto();
         try {
 

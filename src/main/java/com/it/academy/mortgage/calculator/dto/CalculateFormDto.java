@@ -15,9 +15,8 @@ public class CalculateFormDto {
 
     public CalculateFormDto(){}
 
-    public CalculateFormDto(int homePrice, int monthlyFamilyIncome, int loanTerm) {
+    public CalculateFormDto(int homePrice, int loanTerm) {
         this.homePrice = homePrice;
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
         this.loanTerm = loanTerm;
     }
 
@@ -77,35 +76,4 @@ public class CalculateFormDto {
         this.city = city;
     }
 
-//    public double getMaxLoan() {
-//        return maxLoan;
-//    }
-//
-//    public void setMaxLoan(double maxLoan) {
-//        this.maxLoan = maxLoan;
-//    }
-//
-//    public double getTotalInterestPaid() {
-//        return totalInterestPaid;
-//    }
-//
-//    public void setTotalInterestPaid(double totalInterestPaid) {
-//        this.totalInterestPaid = totalInterestPaid;
-//    }
-//
-//    public double getAgreementFee() {
-//        return agreementFee;
-//    }
-//
-//    public void setAgreementFee(double agreementFee) {
-//        this.agreementFee = agreementFee;
-//    }
-//
-//    public double getTotalPaymentSum() {
-//        return totalPaymentSum;
-//    }
-//
-//    public void setTotalPaymentSum(double totalPaymentSum) {
-//        this.totalPaymentSum = totalPaymentSum;
-//    }
 }

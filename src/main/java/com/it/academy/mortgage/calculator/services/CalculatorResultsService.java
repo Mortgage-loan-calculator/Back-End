@@ -29,23 +29,37 @@ public class CalculatorResultsService {
     private static double getEuriborRates() throws IOException {
         Document document = Jsoup.connect("https://www.swedbank.lt/private/home/more/pricesrates/loaninterests?language=EN").get();
         Element yearElement = document.select("#mainForm > section > ui-table > table > tbody > tr:nth-child(2) > td:nth-child(3)").first();
-        return Double.parseDouble(yearElement.text().replace("%",""));
+        return Double.parseDouble(yearElement.text().replace("%", ""));
     }
 
     public double maxLoan(CalculateFormDto calculateFormDto) {
-        return calculateFormDto.getMonthlyFamilyIncome() * 12 * 0.4 * calculateFormDto.getLoanTerm();
+        return formatDecimal(calculateFormDto.getHomePrice() * 0.85);
+    }
+
+    public double sumOfTotalInterestPaid(CalculateFormDto calculateFormDto) {
+        return maxLoan(calculateFormDto) / 360;
     }
 
     public double totalInterestPaid(CalculateFormDto calculateFormDto) throws IOException {
-        return (2.0 + getEuriborRates()) * maxLoan(calculateFormDto);
+        return formatDecimal((sumOfTotalInterestPaid(calculateFormDto) +
+                (sumOfTotalInterestPaid(calculateFormDto) * ((2 + getEuriborRates()) / 100)))
+                * calculateFormDto.getLoanTerm() * 12);
     }
 
     public double agreementFee(CalculateFormDto calculateFormDto) {
-        return maxLoan(calculateFormDto) * 0.004;
+        return formatDecimal(maxLoan(calculateFormDto) * 0.004);
     }
 
     public double totalPaymentSum(CalculateFormDto calculateFormDto) throws IOException {
-        return maxLoan(calculateFormDto) + totalInterestPaid(calculateFormDto) + agreementFee(calculateFormDto);
+        return formatDecimal(calculateFormDto.getHomePrice() + agreementFee(calculateFormDto) + totalInterestPaid(calculateFormDto));
+    }
+
+    static double formatDecimal(double value) {
+        value = value * Math.pow(10, 2);
+        value = Math.floor(value);
+        value = value / Math.pow(10, 2);
+
+        return value;
     }
 
     public List<CalculateResultsDto> getAllCalculatorResultList(){
