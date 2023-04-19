@@ -2,11 +2,24 @@ package com.it.academy.mortgage.calculator.dto;
 
 import com.it.academy.mortgage.calculator.models.CalculateResults;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CalculateFormDto {
 
     private long id;
-    private int homePrice;
-    private int monthlyFamilyIncome;
+    @NotNull(message = "Home price field is mandatory")
+    @PositiveOrZero(message = "Home price should be a positive number")
+    private Integer homePrice;
+
+    @NotNull(message = "Monthly family income field is mandatory")
+    @PositiveOrZero(message = "Monthly family income should be a positive number")
+    private Integer monthlyFamilyIncome;
+
     private int loanTerm;
     private int familyMembers;
     private boolean haveChildren;
@@ -19,67 +32,4 @@ public class CalculateFormDto {
     }
     public CalculateFormDto() {
     }
-
-    public int getHomePrice() {
-        return homePrice;
-    }
-
-    public void setHomePrice(int homePrice) {
-        this.homePrice = homePrice;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-    public int getMonthlyFamilyIncome() {
-        return monthlyFamilyIncome;
-    }
-
-    public void setMonthlyFamilyIncome(int monthlyFamilyIncome) {
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
-    }
-
-    public int getLoanTerm() {
-        return loanTerm;
-    }
-
-    public void setLoanTerm(int loanTerm) {
-        this.loanTerm = loanTerm;
-    }
-
-    public int getFamilyMembers() {
-        return familyMembers;
-    }
-
-    public void setFamilyMembers(int familyMembers) {
-        this.familyMembers = familyMembers;
-    }
-
-    public boolean isHaveChildren() {
-        return haveChildren;
-    }
-
-    public void setHaveChildren(boolean haveChildren) {
-        this.haveChildren = haveChildren;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-    public CalculateResults getCalculateResults() {
-        return calculateResults;
-    }
-
-    public void setCalculateResults(CalculateResults calculateResults) {
-        this.calculateResults = calculateResults;
-    }
-
 }
