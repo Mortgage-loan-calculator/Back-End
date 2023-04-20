@@ -1,23 +1,34 @@
-package com.it.academy.mortgage.calculator.dto;
+package com.it.academy.mortgage.calculator.models;
 
-import com.it.academy.mortgage.calculator.models.CalculateResults;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-public class CalculateFormDto {
+@Entity(name = "calculate_form")
+@AllArgsConstructor
+@NoArgsConstructor
+public class CalculateForm {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int homePrice;
     private int monthlyFamilyIncome;
     private int loanTerm;
     private int familyMembers;
     private boolean haveChildren;
     private String city;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "calculate_form_id", referencedColumnName = "id")
     private CalculateResults calculateResults;
 
-    public CalculateFormDto(int homePrice, int loanTerm) {
-        this.homePrice = homePrice;
-        this.loanTerm = loanTerm;
+    public Long getId() {
+        return id;
     }
-    public CalculateFormDto() {
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getHomePrice() {
@@ -28,13 +39,6 @@ public class CalculateFormDto {
         this.homePrice = homePrice;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
     public int getMonthlyFamilyIncome() {
         return monthlyFamilyIncome;
     }
@@ -74,6 +78,7 @@ public class CalculateFormDto {
     public void setCity(String city) {
         this.city = city;
     }
+
     public CalculateResults getCalculateResults() {
         return calculateResults;
     }
@@ -81,5 +86,4 @@ public class CalculateFormDto {
     public void setCalculateResults(CalculateResults calculateResults) {
         this.calculateResults = calculateResults;
     }
-
 }
