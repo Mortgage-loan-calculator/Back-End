@@ -2,16 +2,11 @@ package com.it.academy.mortgage.calculator.controllers;
 
 import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import com.it.academy.mortgage.calculator.dto.CalculateResultsDto;
-import com.it.academy.mortgage.calculator.exceptions.CalculatorException;
-import com.it.academy.mortgage.calculator.services.CalculateResultService;
 import com.it.academy.mortgage.calculator.services.CalculatorService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController()
@@ -19,24 +14,34 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:4200", "https://mortgage-loan-calculator-front-end2.onrender.com"})
 public class CalculatorController {
 
-    private final CalculateResultService calculateResultService;
+    private final CalculatorService calculatorService;
 
-    public CalculatorController(CalculateResultService calculateResultService) {
-        this.calculateResultService = calculateResultService;
+    public CalculatorController(CalculatorService calculatorService) {
+        this.calculatorService = calculatorService;
     }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public CalculateResultsDto sendFormData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
-        return calculateResultService.calculateResults(calculateFormDto.getHomePrice(), calculateFormDto.getLoanTerm());
-    }
+       return calculatorService.saveLoanDetailsAndResults(calculateFormDto);
+          }
 
-    @GetMapping("/all")
+    @GetMapping("/forms")
+    public List<CalculateFormDto> getAllForms (){
+        return calculatorService.getAllLoanDetailsList();
+    }
+    @GetMapping("/results")
     public List<CalculateResultsDto> getAllResults(){
-        return calculateResultService.getAllCalculatorResultList();
+        return calculatorService.getAllCalculatorResultList();
     }
 
-    @DeleteMapping("{id}")
-    public void deletePatient (@PathVariable (name = "id") Long id){
-        calculateResultService.deleteCalculateForm(id);
+    @DeleteMapping("/result/{id}")
+    public void deleteResult (@PathVariable (name = "id") Long id){
+        calculatorService.deleteCalculateResults(id);
     }
+
+    @DeleteMapping("/form/{id}")
+    public void deleteForm (@PathVariable (name = "id") Long id){
+        calculatorService.deleteCalculateForm(id);
+    }
+
 }
