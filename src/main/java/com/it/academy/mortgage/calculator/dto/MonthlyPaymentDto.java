@@ -1,48 +1,29 @@
 package com.it.academy.mortgage.calculator.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class MonthlyPaymentDto {
 
-    private double dealAmount;
-    private double downPayment;
-    private int loanPeriod;
-    private int monthlyIncome;
+    @NotNull(message = "Deal amount field is mandatory")
+    @PositiveOrZero(message = "Deal amount should be a positive number")
+    private Double dealAmount;
 
-    public MonthlyPaymentDto(double dealAmount, double downPayment, int loanPeriod, int monthlyIncome) {
-        this.dealAmount = dealAmount;
-        this.downPayment = downPayment;
-        this.loanPeriod = loanPeriod;
-        this.monthlyIncome = monthlyIncome;
-    }
+    @NotNull(message = "Down payment field is mandatory")
+    @PositiveOrZero(message = "Down payment should be a positive number")
+    private Double downPayment;
 
-    public double getDealAmount() {
-        return dealAmount;
-    }
+    @NotNull(message = "Loan period field is mandatory")
+    @PositiveOrZero(message = "Loan period should be a positive number")
+    private Integer loanPeriod;
 
-    public void setDealAmount(double dealAmount) {
-        this.dealAmount = dealAmount;
-    }
-
-    public double getDownPayment() {
-        return downPayment;
-    }
-
-    public void setDownPayment(double downPayment) {
-        this.downPayment = downPayment;
-    }
-
-    public int getLoanPeriod() {
-        return loanPeriod;
-    }
-
-    public void setLoanPeriod(int loanPeriod) {
-        this.loanPeriod = loanPeriod;
-    }
-
-    public int getMonthlyIncome() {
-        return monthlyIncome;
-    }
-
-    public void setMonthlyIncome(int monthlyIncome) {
-        this.monthlyIncome = monthlyIncome;
-    }
+    @NotNull(message = "Monthly family income field is mandatory")
+    @PositiveOrZero(message = "Monthly family income should be a positive number")
+    private Integer monthlyIncome;
 }

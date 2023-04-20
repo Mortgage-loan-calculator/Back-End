@@ -1,32 +1,22 @@
 package com.it.academy.mortgage.calculator.services;
 
 import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-public class CalculatorService {
-
-    public static double getEuriborRates() throws IOException {
-        Document document = Jsoup.connect("https://www.swedbank.lt/private/home/more/pricesrates/loaninterests?language=EN").get();
-        Element yearElement = document.select("#mainForm > section > ui-table > table > tbody > tr:nth-child(2) > td:nth-child(3)").first();
-        return Double.parseDouble(yearElement.text().replace("%", ""));
-    }
+@Service
+public class CalculatorService extends FormsService {
 
     public double maxLoan(CalculateFormDto calculateFormDto) {
         return formatDecimal(calculateFormDto.getHomePrice() * 0.85);
     }
 
-    public double sumOfTotalInterestPaid(CalculateFormDto calculateFormDto) {
-        return maxLoan(calculateFormDto) / (calculateFormDto.getLoanTerm() * 12);
-    }
-
     public double totalInterestPaid(CalculateFormDto calculateFormDto) throws IOException {
-        return formatDecimal((sumOfTotalInterestPaid(calculateFormDto) +
-                (sumOfTotalInterestPaid(calculateFormDto) * ((2 + getEuriborRates()) / 100)))
-                * calculateFormDto.getLoanTerm() * 12);
+        double partialSum = calculatePartialSum(calculateFormDto.getHomePrice(), calculateFormDto.getLoanTerm());
+        double estimatedPayment = partialSum + (partialSum * ((2 + getEuriborRates()) / 100));
+
+        return formatDecimal(estimatedPayment * calculateFormDto.getLoanTerm() * 12);
     }
 
     public double agreementFee(CalculateFormDto calculateFormDto) {
@@ -35,14 +25,6 @@ public class CalculatorService {
 
     public double totalPaymentSum(CalculateFormDto calculateFormDto) throws IOException {
         return formatDecimal(calculateFormDto.getHomePrice() + agreementFee(calculateFormDto) + totalInterestPaid(calculateFormDto));
-    }
-
-    static double formatDecimal(double value) {
-        value = value * Math.pow(10, 2);
-        value = Math.floor(value);
-        value = value / Math.pow(10, 2);
-
-        return value;
     }
 
 }
