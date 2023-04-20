@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class CalculateFormService {
+public class CalculateFormService extends FormsService {
 
     private CalculateFormRepository calculateFormRepository;
     private CalculateFormMapper calculateFormMapper;
@@ -29,12 +29,6 @@ public class CalculateFormService {
     }
     Logger logger = LoggerFactory.getLogger(CalculateFormService.class);
 
-
-    private static double getEuriborRates() throws IOException {
-        Document document = Jsoup.connect("https://www.swedbank.lt/private/home/more/pricesrates/loaninterests?language=EN").get();
-        Element yearElement = document.select("#mainForm > section > ui-table > table > tbody > tr:nth-child(2) > td:nth-child(3)").first();
-        return Double.parseDouble(yearElement.text().replace("%", ""));
-    }
 
     public double maxLoan(CalculateFormDto calculateFormDto) {
         return formatDecimal(calculateFormDto.getHomePrice() * 0.85);
@@ -56,14 +50,6 @@ public class CalculateFormService {
 
     public double totalPaymentSum(CalculateFormDto calculateFormDto) throws IOException {
         return formatDecimal(calculateFormDto.getHomePrice() + agreementFee(calculateFormDto) + totalInterestPaid(calculateFormDto));
-    }
-
-    static double formatDecimal(double value) {
-        value = value * Math.pow(10, 2);
-        value = Math.floor(value);
-        value = value / Math.pow(10, 2);
-
-        return value;
     }
 
     public CalculateFormDto findById (Long id){
