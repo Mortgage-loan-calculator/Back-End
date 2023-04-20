@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.it.academy.mortgage.calculator.CalculateControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-19T13:07:07" hostname="LAPTOP-6JJKAEQV" time="0.118">
+<testsuite name="com.it.academy.mortgage.calculator.CalculateControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-20T12:37:29" hostname="DESKTOP-IDHDKG4" time="0.156">
   <properties/>
-  <testcase name="testHandleEuriborException()" classname="com.it.academy.mortgage.calculator.CalculateControllerTest" time="0.118"/>
+  <testcase name="testHandleEuriborException()" classname="com.it.academy.mortgage.calculator.CalculateControllerTest" time="0.156"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
