@@ -2,8 +2,6 @@ package com.it.academy.mortgage.calculator.models;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
@@ -21,18 +19,19 @@ public class Customer {
     @Column(name = "ip_address")
     private String ipAddress;
     private final LocalDateTime time;
+    private String action;
 
     public Customer() {
         this.time = LocalDateTime.now();
     }
 
-    public Customer(String id, String name, String phoneNumber, String email) throws UnknownHostException {
-        this.id = id;
+    public Customer(String name, String phoneNumber, String email, String action) throws UnknownHostException {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.ipAddress = InetAddress.getLocalHost().toString();;
+        this.ipAddress = InetAddress.getLocalHost().getHostAddress();
         this.time = LocalDateTime.now();
+        this.action = action;
     }
 
     public String getId() {
@@ -77,6 +76,14 @@ public class Customer {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override
