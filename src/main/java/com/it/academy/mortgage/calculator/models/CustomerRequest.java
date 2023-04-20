@@ -1,4 +1,4 @@
 package com.it.academy.mortgage.calculator.models;
 
-public record CustomerRequest(String name, String number, String email) {
+public record CustomerRequest(String name, String phoneNumber, String email, String action) {
 }
