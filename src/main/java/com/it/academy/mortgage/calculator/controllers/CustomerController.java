@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void addCustomer (@RequestBody CustomerRequest customer) throws UnknownHostException {customerService.addCustomer(customer);
+    public void addCustomer (@RequestBody @Valid CustomerRequest customer) throws UnknownHostException {customerService.addCustomer(customer);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

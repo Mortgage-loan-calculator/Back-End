@@ -17,11 +17,11 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    @NotEmpty
+    @NotBlank
     private String name;
     @Column(name = "number")
-    @Length(min = 8, message = "Phone number too short")
-    @Length(max = 10, message = "Phone number too long")
+    @Length(min = 1, message = "Phone number too short")
+    @Length(max = 20, message = "Phone number too long")
     private String phoneNumber;
 
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
