@@ -13,7 +13,7 @@ public class MonthlyPaymentService extends FormsService {
 
     public double estimatedMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) throws IOException {
         double partialSum = calculatePartialSum(monthlyPaymentDto.getDealAmount(), monthlyPaymentDto.getLoanPeriod());
-        double interestRate = (BANK_INTEREST_RATE + getEuriborRates()) / 100;
+        double interestRate = (BANK_INTEREST_RATE + fetchEuribor()) / 100;
         double estimatedPayment = partialSum + (partialSum * interestRate);
 
         return formatDecimal(estimatedPayment);
