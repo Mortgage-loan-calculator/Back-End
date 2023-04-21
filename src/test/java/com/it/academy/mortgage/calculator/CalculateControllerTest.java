@@ -1,7 +1,7 @@
 package com.it.academy.mortgage.calculator;
 
 import com.it.academy.mortgage.calculator.exceptions.CalculatorException;
-import com.it.academy.mortgage.calculator.exceptions.CalculatorExceptionHandler;
+import com.it.academy.mortgage.calculator.exceptions.RestExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.*;
 
@@ -12,8 +12,8 @@ public class CalculateControllerTest {
     @Test
     public void testHandleEuriborException() {
         CalculatorException exception = new CalculatorException();
-        CalculatorExceptionHandler calculatorExceptionHandler = new CalculatorExceptionHandler();
-        ResponseEntity<String> response = calculatorExceptionHandler.handleEuriborException(exception);
+        RestExceptionHandler restExceptionHandler = new RestExceptionHandler();
+        ResponseEntity<String> response = RestExceptionHandler.handleEuriborException(exception);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Error, could not get Euribor rates from Swedbank", response.getBody());
     }

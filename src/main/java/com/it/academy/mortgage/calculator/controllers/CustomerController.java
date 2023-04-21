@@ -6,6 +6,7 @@ import com.it.academy.mortgage.calculator.models.CustomerRequest;
 import com.it.academy.mortgage.calculator.services.CustomerService;
 
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void addCustomer (@RequestBody CustomerRequest customer) throws UnknownHostException {customerService.addCustomer(customer);
+    public void addCustomer (@RequestBody @Valid CustomerRequest customer) throws UnknownHostException {customerService.addCustomer(customer);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
