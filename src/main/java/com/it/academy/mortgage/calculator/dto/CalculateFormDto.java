@@ -26,7 +26,7 @@ public class CalculateFormDto {
     private int familyMembers;
     private boolean haveChildren;
     private String city;
-    private CalculateResults calculateResults;
+    private CalculateResultsDto calculateResultsDto;
 
     public CalculateFormDto(int homePrice, int loanTerm) {
         this.homePrice = homePrice;

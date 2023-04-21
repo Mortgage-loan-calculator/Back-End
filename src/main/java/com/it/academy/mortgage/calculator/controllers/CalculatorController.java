@@ -19,28 +19,35 @@ public class CalculatorController {
     public CalculatorController(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public CalculateResultsDto sendFormData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
-       return calculatorService.saveLoanDetailsAndResults(calculateFormDto);
-          }
+        return calculatorService.saveLoanDetailsAndResults(calculateFormDto);
+    }
+
+    @GetMapping()
+    public CalculateResultsDto getResults(@RequestBody CalculateFormDto calculateFormDto) {
+        return calculatorService.calculateResults(calculateFormDto);
+    }
 
     @GetMapping("/forms")
-    public List<CalculateFormDto> getAllForms (){
+    public List<CalculateFormDto> getAllForms() {
         return calculatorService.getAllLoanDetailsList();
     }
+
     @GetMapping("/results")
-    public List<CalculateResultsDto> getAllResults(){
+    public List<CalculateResultsDto> getAllResults() {
         return calculatorService.getAllCalculatorResultList();
     }
 
     @DeleteMapping("/result/{id}")
-    public void deleteResult (@PathVariable (name = "id") Long id){
+    public void deleteResult(@PathVariable(name = "id") Long id) {
         calculatorService.deleteCalculateResults(id);
     }
 
     @DeleteMapping("/form/{id}")
-    public void deleteForm (@PathVariable (name = "id") Long id){
+    public void deleteForm(@PathVariable(name = "id") Long id) {
         calculatorService.deleteCalculateForm(id);
     }
 
