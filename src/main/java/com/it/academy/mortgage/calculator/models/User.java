@@ -3,6 +3,7 @@ package com.it.academy.mortgage.calculator.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 
@@ -19,17 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 20)
+    @NotBlank(message = "Username cannot be blank")
+    @Size(max = 20, message = "Username is too long")
+    @Size(min = 4, message = "Username is too short")
     private String username;
 
-    @NotBlank
-    @Size(max = 50)
-    @Email
+    @Size(max = 50, message = "Email is too short")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @NotEmpty(message = "Email cannot be empty")
     private String email;
 
-    @NotBlank
-    @Size(max = 120)
+    @NotBlank(message = "Password cannot be empty")
+    @Size(max = 120, message = "Password is too long")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

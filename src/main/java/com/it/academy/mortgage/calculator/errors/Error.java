@@ -5,8 +5,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
 public class Error {
 
     private String message;
@@ -14,6 +12,22 @@ public class Error {
 
     public Error(String message, List<String> errors) {
         this.message = message;
+        this.errors = errors;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<String> errors) {
         this.errors = errors;
     }
 }
