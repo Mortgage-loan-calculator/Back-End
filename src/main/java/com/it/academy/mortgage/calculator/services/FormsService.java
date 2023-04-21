@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class FormsService {
 
-    public static final double LOAN_AMOUNT = 0.85;
-    public static final int MONTHS_IN_A_YEAR = 12;
+    private static final double LOAN_AMOUNT = 0.85;
+    private static final int MONTHS_IN_A_YEAR = 12;
 
     public double getEuriborRates() throws IOException {
         Document document = Jsoup.connect("https://www.swedbank.lt/private/home/more/pricesrates/loaninterests?language=EN").get();

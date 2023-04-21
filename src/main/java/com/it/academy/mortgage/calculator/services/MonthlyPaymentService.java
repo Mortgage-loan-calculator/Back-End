@@ -8,8 +8,8 @@ import java.io.IOException;
 @Service
 public class MonthlyPaymentService extends FormsService {
 
-    public static final int BANK_INTEREST_RATE = 2;
-    public static final double AGREEMENT_FEE = 0.4;
+    private static final int BANK_INTEREST_RATE = 2;
+    private static final double AGREEMENT_FEE = 0.4;
 
     public double estimatedMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) throws IOException {
         double partialSum = calculatePartialSum(monthlyPaymentDto.getDealAmount(), monthlyPaymentDto.getLoanPeriod());

@@ -17,10 +17,10 @@ import java.util.List;
 @Service
 public class CalculatorService extends FormsService {
 
-    public static final double AGREEMENT_FEE = 0.004;
-    public static final double LOAN_AMOUNT = 0.85;
-    public static final int BANK_INTEREST_RATE = 2;
-    public static final int MONTHS_IN_YEAR = 12;
+    private static final double AGREEMENT_FEE = 0.004;
+    private static final double LOAN_AMOUNT = 0.85;
+    private static final int BANK_INTEREST_RATE = 2;
+    private static final int MONTHS_IN_YEAR = 12;
     private final CalculateFormRepository calculateFormRepository;
     private final CalculateResultsRepository calculateResultsRepository;
     private final CalculateMapper calculateMapper;
