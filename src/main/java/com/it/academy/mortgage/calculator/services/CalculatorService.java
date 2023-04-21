@@ -38,7 +38,7 @@ public class CalculatorService extends FormsService {
 
     private double totalInterestPaid(CalculateFormDto calculateFormDto) throws IOException {
         double partialSum = calculatePartialSum(calculateFormDto.getHomePrice(), calculateFormDto.getLoanTerm());
-        double estimatedPayment = partialSum + (partialSum * ((BANK_INTEREST_RATE + getEuriborRates()) / 100));
+        double estimatedPayment = partialSum + (partialSum * ((BANK_INTEREST_RATE + fetchEuribor()) / 100));
 
         return formatDecimal(estimatedPayment * calculateFormDto.getLoanTerm() * MONTHS_IN_YEAR);
     }
