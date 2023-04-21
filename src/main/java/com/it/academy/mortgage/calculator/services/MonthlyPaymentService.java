@@ -8,16 +8,19 @@ import java.io.IOException;
 @Service
 public class MonthlyPaymentService extends FormsService {
 
+    private static final int BANK_INTEREST_RATE = 2;
+    private static final double AGREEMENT_FEE = 0.4;
+
     public double estimatedMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) throws IOException {
         double partialSum = calculatePartialSum(monthlyPaymentDto.getDealAmount(), monthlyPaymentDto.getLoanPeriod());
-        double interestRate = (2 + getEuriborRates()) / 100;
+        double interestRate = (BANK_INTEREST_RATE + getEuriborRates()) / 100;
         double estimatedPayment = partialSum + (partialSum * interestRate);
 
         return formatDecimal(estimatedPayment);
     }
 
     public double maxMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) {
-        return formatDecimal(monthlyPaymentDto.getMonthlyIncome() * 0.4);
+        return formatDecimal(monthlyPaymentDto.getMonthlyIncome() * AGREEMENT_FEE);
     }
 
 }
