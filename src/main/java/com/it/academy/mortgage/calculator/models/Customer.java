@@ -1,6 +1,11 @@
 package com.it.academy.mortgage.calculator.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -12,9 +17,15 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+    @NotEmpty
     private String name;
     @Column(name = "number")
+    @Length(min = 8, message = "Phone number too short")
+    @Length(max = 10, message = "Phone number too long")
     private String phoneNumber;
+
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @NotEmpty(message = "Email cannot be empty")
     private String email;
     @Column(name = "ip_address")
     private String ipAddress;
