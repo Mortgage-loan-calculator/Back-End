@@ -25,6 +25,10 @@ public class CalculatorController {
     public CalculateResultsDto sendFormData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
         return calculatorService.saveLoanDetailsAndResults(calculateFormDto);
     }
+    @PostMapping("/results")
+    public CalculateResultsDto calculateData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
+        return calculatorService.calculateResults(calculateFormDto);
+    }
 
     @GetMapping()
     public CalculateResultsDto getResults(@RequestBody CalculateFormDto calculateFormDto) {
