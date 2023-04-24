@@ -12,7 +12,7 @@ public class MonthlyPaymentService extends FormsService {
     private static final double AGREEMENT_FEE = 0.4;
 
     public double estimatedMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) throws IOException {
-        double partialSum = calculatePartialSum(monthlyPaymentDto.getDealAmount(), monthlyPaymentDto.getLoanPeriod());
+        double partialSum = calculatePartialSum(monthlyPaymentDto.dealAmount(), monthlyPaymentDto.loanPeriod());
         double interestRate = (BANK_INTEREST_RATE + fetchEuribor()) / 100;
         double estimatedPayment = partialSum + (partialSum * interestRate);
 
@@ -20,7 +20,7 @@ public class MonthlyPaymentService extends FormsService {
     }
 
     public double maxMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) {
-        return formatDecimal(monthlyPaymentDto.getMonthlyIncome() * AGREEMENT_FEE);
+        return formatDecimal(monthlyPaymentDto.monthlyIncome() * AGREEMENT_FEE);
     }
 
 }

@@ -1,12 +1,5 @@
 package com.it.academy.mortgage.calculator.services;
 
-import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.io.IOException;
-
 public class FormsService extends EuriborFetcher {
 
     private static final double LOAN_AMOUNT = 0.85;
