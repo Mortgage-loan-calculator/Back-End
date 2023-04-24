@@ -33,14 +33,14 @@ public class CalculatorService extends FormsService {
     }
 
     private double maxLoan(CalculateFormDto calculateFormDto) {
-        return formatDecimal(calculateFormDto.getHomePrice() * LOAN_AMOUNT);
+        return formatDecimal(calculateFormDto.homePrice() * LOAN_AMOUNT);
     }
 
     private double totalInterestPaid(CalculateFormDto calculateFormDto) throws IOException {
-        double partialSum = calculatePartialSum(calculateFormDto.getHomePrice(), calculateFormDto.getLoanTerm());
-        double estimatedPayment = partialSum + (partialSum * ((BANK_INTEREST_RATE + getEuriborRates()) / 100));
+        double partialSum = calculatePartialSum(calculateFormDto.homePrice(), calculateFormDto.loanTerm());
+        double estimatedPayment = partialSum + (partialSum * ((BANK_INTEREST_RATE + fetchEuribor()) / 100));
 
-        return formatDecimal(estimatedPayment * calculateFormDto.getLoanTerm() * MONTHS_IN_YEAR);
+        return formatDecimal(estimatedPayment * calculateFormDto.loanTerm() * MONTHS_IN_YEAR);
     }
 
     private double agreementFee(CalculateFormDto calculateFormDto) {
@@ -48,7 +48,7 @@ public class CalculatorService extends FormsService {
     }
 
     private double totalPaymentSum(CalculateFormDto calculateFormDto) throws IOException {
-        return formatDecimal(calculateFormDto.getHomePrice() + agreementFee(calculateFormDto) + totalInterestPaid(calculateFormDto));
+        return formatDecimal(calculateFormDto.homePrice() + agreementFee(calculateFormDto) + totalInterestPaid(calculateFormDto));
     }
 
     public CalculateFormDto findById(Long id) {
@@ -65,9 +65,19 @@ public class CalculatorService extends FormsService {
 
         CalculateResultsDto calculateResultsDto = calculateResults(calculateFormDto);
 
-        calculateFormDto.setCalculateResultsDto(calculateResultsDto);
+        CalculateFormDto calculateFormDtoNew =
+                new CalculateFormDto(
+                        calculateFormDto.id(),
+                        calculateFormDto.homePrice(),
+                        calculateFormDto.monthlyFamilyIncome(),
+                        calculateFormDto.loanTerm(),
+                        calculateFormDto.familyMembers(),
+                        calculateFormDto.haveChildren(),
+                        calculateFormDto.city(),
+                        calculateResultsDto
+                );
 
-        CalculateForm calculateForm = calculateMapper.fromFormDto(calculateFormDto);
+        CalculateForm calculateForm = calculateMapper.fromFormDto(calculateFormDtoNew);
         CalculateResults calculateResults = calculateMapper.fromResultsDto(calculateResultsDto);
         calculateFormRepository.save(calculateForm);
         calculateResultsRepository.save(calculateResults);
@@ -75,12 +85,14 @@ public class CalculatorService extends FormsService {
     }
 
     public CalculateResultsDto calculateResults(CalculateFormDto calculateFormDto) {
-        CalculateResultsDto calculateResultsDto = new CalculateResultsDto();
-        calculateResultsDto.setMaxLoan(maxLoan(calculateFormDto));
+        CalculateResultsDto calculateResultsDto = null;
         try {
-            calculateResultsDto.setTotalInterestPaid(totalInterestPaid(calculateFormDto));
-            calculateResultsDto.setAgreementFee(agreementFee(calculateFormDto));
-            calculateResultsDto.setTotalPaymentSum(totalPaymentSum(calculateFormDto));
+            calculateResultsDto = new CalculateResultsDto(
+                    calculateFormDto.id(),
+                    maxLoan(calculateFormDto),
+                    totalInterestPaid(calculateFormDto),
+                    agreementFee(calculateFormDto),
+                    totalPaymentSum(calculateFormDto));
         } catch (IOException e) {
             LOGGER.error("Error: " + e);
         }
