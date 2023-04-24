@@ -31,8 +31,6 @@ public class MonthlyPaymentController {
                     new MonthlyResultsDto(
                             monthlyPaymentService.estimatedMonthlyPayment(monthlyPaymentDto),
                             monthlyPaymentService.maxMonthlyPayment(monthlyPaymentDto));
-//            monthlyResultsDto.setEstimatedMonthlyPayment(monthlyPaymentService.estimatedMonthlyPayment(monthlyPaymentDto));
-//            monthlyResultsDto.setMaxMonthlyPayment(monthlyPaymentService.maxMonthlyPayment(monthlyPaymentDto));
 
         } catch (IOException exception) {
             throw new CalculatorException();
