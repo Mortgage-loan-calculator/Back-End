@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class MonthlyPaymentDto {
+    @NotNull(message = "partnerToggle cannot be null")
+    private Boolean partnerToggle;
 
     @NotNull(message = "Deal amount field is mandatory")
     @PositiveOrZero(message = "Deal amount should be a positive number")
