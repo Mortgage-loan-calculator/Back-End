@@ -15,12 +15,18 @@ public class MonthlyPaymentService extends FormsService {
         double partialSum = calculatePartialSum(monthlyPaymentDto.dealAmount(), monthlyPaymentDto.loanPeriod());
         double interestRate = (BANK_INTEREST_RATE + fetchEuribor()) / 100;
         double estimatedPayment = partialSum + (partialSum * interestRate);
-
+        if(monthlyPaymentDto.partnerToggle()){
+            estimatedPayment = estimatedPayment / 2;
+        }
         return formatDecimal(estimatedPayment);
     }
 
     public double maxMonthlyPayment(MonthlyPaymentDto monthlyPaymentDto) {
-        return formatDecimal(monthlyPaymentDto.monthlyIncome() * AGREEMENT_FEE);
+        double maxMonthlyPayment = formatDecimal(monthlyPaymentDto.monthlyIncome() * AGREEMENT_FEE);
+        if(monthlyPaymentDto.partnerToggle()){
+            maxMonthlyPayment = maxMonthlyPayment / 2;
+        }
+        return maxMonthlyPayment;
     }
 
 }

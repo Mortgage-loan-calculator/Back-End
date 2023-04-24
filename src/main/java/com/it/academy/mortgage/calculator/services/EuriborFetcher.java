@@ -19,11 +19,10 @@ public class EuriborFetcher {
         String apiKey = "444WrePC8ipo9qXgZYLzdg==0pMFBCinmqJLNGZb";
         String euriborName = "Euribor - 12 month";
         String encodedEuriborName = URLEncoder.encode(euriborName, StandardCharsets.UTF_8);
-        String encodedApiKey = URLEncoder.encode(apiKey, StandardCharsets.UTF_8);
         URL url = new URL("https://api.api-ninjas.com/v1/interestrate?name=" + encodedEuriborName);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestProperty("accept", "application/json");
-        connection.setRequestProperty("X-Api-Key", encodedApiKey);
+        connection.setRequestProperty("X-Api-Key", apiKey);
         connection.setRequestProperty("accept", "application/json");
         InputStream responseStream = connection.getInputStream();
         ObjectMapper mapper = new ObjectMapper();
