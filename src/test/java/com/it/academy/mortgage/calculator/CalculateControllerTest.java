@@ -1,5 +1,6 @@
 package com.it.academy.mortgage.calculator;
 
+import com.it.academy.mortgage.calculator.services.EuriborFetcher;
 import org.junit.jupiter.api.Test;
 
 
