@@ -23,7 +23,7 @@ public class EuriborFetcher {
         URL url = new URL("https://api.api-ninjas.com/v1/interestrate?name=" + encodedEuriborName);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestProperty("accept", "application/json");
-        connection.setRequestProperty("X-Api-Key", apiKey);
+        connection.setRequestProperty("X-Api-Key", encodedApiKey);
         connection.setRequestProperty("accept", "application/json");
         InputStream responseStream = connection.getInputStream();
         ObjectMapper mapper = new ObjectMapper();
