@@ -19,15 +19,15 @@ public class CalculateMapper {
 
         CalculateForm calculateForm = new CalculateForm();
 
-        calculateForm.setId(calculateFormDto.getId());
-        calculateForm.setHomePrice(calculateFormDto.getHomePrice());
-        calculateForm.setMonthlyFamilyIncome(calculateFormDto.getMonthlyFamilyIncome());
-        calculateForm.setLoanTerm(calculateFormDto.getLoanTerm());
-        calculateForm.setFamilyMembers(calculateFormDto.getFamilyMembers());
-        calculateForm.setHaveChildren(calculateFormDto.isHaveChildren());
-        calculateForm.setCity(calculateFormDto.getCity());
+        calculateForm.setId(calculateFormDto.id());
+        calculateForm.setHomePrice(calculateFormDto.homePrice());
+        calculateForm.setMonthlyFamilyIncome(calculateFormDto.monthlyFamilyIncome());
+        calculateForm.setLoanTerm(calculateFormDto.loanTerm());
+        calculateForm.setFamilyMembers(calculateFormDto.familyMembers());
+        calculateForm.setHaveChildren(calculateFormDto.haveChildren());
+        calculateForm.setCity(calculateFormDto.city());
 
-        calculateForm.setCalculateResults(fromResultsDto(calculateFormDto.getCalculateResultsDto()));
+        calculateForm.setCalculateResults(fromResultsDto(calculateFormDto.calculateResultsDto()));
 
         return calculateForm;
     }
@@ -37,18 +37,36 @@ public class CalculateMapper {
             return null;
         }
 
-        CalculateFormDto dto = new CalculateFormDto();
-        dto.setId(calculateForm.getId());
-        dto.setHomePrice(calculateForm.getHomePrice());
-        dto.setMonthlyFamilyIncome(calculateForm.getMonthlyFamilyIncome());
-        dto.setLoanTerm(calculateForm.getLoanTerm());
-        dto.setFamilyMembers(calculateForm.getFamilyMembers());
-        dto.setHaveChildren(calculateForm.isHaveChildren());
-        dto.setCity(calculateForm.getCity());
+//        CalculateFormDto dto =
+//                new CalculateFormDto(
+//                calculateForm.getId(),
+//                calculateForm.getHomePrice(),
+//                calculateForm.getMonthlyFamilyIncome(),
+//                calculateForm.getLoanTerm(),
+//                calculateForm.getFamilyMembers(),
+//                calculateForm.isHaveChildren(),
+//                calculateForm.getCity(),
+//                toResultsDto(calculateForm.getCalculateResults()));
 
-        dto.setCalculateResultsDto(toResultsDto(calculateForm.getCalculateResults()));
+//        dto.setId(calculateForm.getId());
+//        dto.setHomePrice(calculateForm.getHomePrice());
+//        dto.setMonthlyFamilyIncome(calculateForm.getMonthlyFamilyIncome());
+//        dto.setLoanTerm(calculateForm.getLoanTerm());
+//        dto.setFamilyMembers(calculateForm.getFamilyMembers());
+//        dto.setHaveChildren(calculateForm.isHaveChildren());
+//        dto.setCity(calculateForm.getCity());
+//
+//        dto.setCalculateResultsDto(toResultsDto(calculateForm.getCalculateResults()));
 
-        return dto;
+        return new CalculateFormDto(
+                calculateForm.getId(),
+                calculateForm.getHomePrice(),
+                calculateForm.getMonthlyFamilyIncome(),
+                calculateForm.getLoanTerm(),
+                calculateForm.getFamilyMembers(),
+                calculateForm.isHaveChildren(),
+                calculateForm.getCity(),
+                toResultsDto(calculateForm.getCalculateResults()));
     }
 
     public CalculateResults fromResultsDto (CalculateResultsDto calculateResultsDto){
@@ -58,11 +76,11 @@ public class CalculateMapper {
 
         CalculateResults calculateResults = new CalculateResults();
 
-        calculateResults.setId(calculateResultsDto.getId());
-        calculateResults.setMaxLoan(calculateResultsDto.getMaxLoan());
-        calculateResults.setTotalInterestPaid(calculateResultsDto.getTotalInterestPaid());
-        calculateResults.setAgreementFee(calculateResultsDto.getAgreementFee());
-        calculateResults.setTotalPaymentSum(calculateResultsDto.getTotalPaymentSum());
+        calculateResults.setId(calculateResultsDto.id());
+        calculateResults.setMaxLoan(calculateResultsDto.maxLoan());
+        calculateResults.setTotalInterestPaid(calculateResultsDto.totalInterestPaid());
+        calculateResults.setAgreementFee(calculateResultsDto.agreementFee());
+        calculateResults.setTotalPaymentSum(calculateResultsDto.totalPaymentSum());
 
         return calculateResults;
     }
@@ -72,14 +90,12 @@ public class CalculateMapper {
             return null;
         }
 
-        CalculateResultsDto dto = new CalculateResultsDto();
-        dto.setId(calculateResults.getId());
-        dto.setMaxLoan(calculateResults.getMaxLoan());
-        dto.setTotalInterestPaid(calculateResults.getTotalInterestPaid());
-        dto.setAgreementFee(calculateResults.getAgreementFee());
-        dto.setTotalPaymentSum(calculateResults.getTotalPaymentSum());
-
-        return dto;
+        return new CalculateResultsDto(
+                calculateResults.getId(),
+                calculateResults.getMaxLoan(),
+                calculateResults.getTotalInterestPaid(),
+                calculateResults.getAgreementFee(),
+                calculateResults.getTotalPaymentSum());
     }
 
     public List<CalculateResultsDto> toResultsDtoList (List<CalculateResults> entities){
