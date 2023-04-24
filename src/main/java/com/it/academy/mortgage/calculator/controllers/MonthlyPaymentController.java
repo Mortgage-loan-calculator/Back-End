@@ -25,10 +25,14 @@ public class MonthlyPaymentController {
     @PostMapping()
     public ResponseEntity<MonthlyResultsDto> sendFormData(@Valid @RequestBody MonthlyPaymentDto monthlyPaymentDto) {
 
-        MonthlyResultsDto monthlyResultsDto = new MonthlyResultsDto();
+        MonthlyResultsDto monthlyResultsDto;
         try {
-            monthlyResultsDto.setEstimatedMonthlyPayment(monthlyPaymentService.estimatedMonthlyPayment(monthlyPaymentDto));
-            monthlyResultsDto.setMaxMonthlyPayment(monthlyPaymentService.maxMonthlyPayment(monthlyPaymentDto));
+            monthlyResultsDto =
+                    new MonthlyResultsDto(
+                            monthlyPaymentService.estimatedMonthlyPayment(monthlyPaymentDto),
+                            monthlyPaymentService.maxMonthlyPayment(monthlyPaymentDto));
+//            monthlyResultsDto.setEstimatedMonthlyPayment(monthlyPaymentService.estimatedMonthlyPayment(monthlyPaymentDto));
+//            monthlyResultsDto.setMaxMonthlyPayment(monthlyPaymentService.maxMonthlyPayment(monthlyPaymentDto));
 
         } catch (IOException exception) {
             throw new CalculatorException();
