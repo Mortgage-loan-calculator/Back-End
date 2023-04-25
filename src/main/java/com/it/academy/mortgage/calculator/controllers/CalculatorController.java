@@ -34,7 +34,10 @@ public class CalculatorController {
     public CalculateResultsDto getResults(@RequestBody CalculateFormDto calculateFormDto) {
         return calculatorService.calculateResults(calculateFormDto);
     }
-
+    @GetMapping("/forms/{id}")
+    public CalculateFormDto getFormById (@PathVariable(name = "id") Long id){
+        return calculatorService.findById(id);
+    }
     @GetMapping("/forms")
     public List<CalculateFormDto> getAllForms() {
         return calculatorService.getAllLoanDetailsList();

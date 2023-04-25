@@ -19,7 +19,7 @@ public class CalculateMapper {
 
         CalculateForm calculateForm = new CalculateForm();
 
-        calculateForm.setId(calculateFormDto.id());
+//        calculateForm.setId(calculateFormDto.id());
         calculateForm.setHomePrice(calculateFormDto.homePrice());
         calculateForm.setMonthlyFamilyIncome(calculateFormDto.monthlyFamilyIncome());
         calculateForm.setLoanTerm(calculateFormDto.loanTerm());
@@ -36,27 +36,6 @@ public class CalculateMapper {
         if (calculateForm == null) {
             return null;
         }
-
-//        CalculateFormDto dto =
-//                new CalculateFormDto(
-//                calculateForm.getId(),
-//                calculateForm.getHomePrice(),
-//                calculateForm.getMonthlyFamilyIncome(),
-//                calculateForm.getLoanTerm(),
-//                calculateForm.getFamilyMembers(),
-//                calculateForm.isHaveChildren(),
-//                calculateForm.getCity(),
-//                toResultsDto(calculateForm.getCalculateResults()));
-
-//        dto.setId(calculateForm.getId());
-//        dto.setHomePrice(calculateForm.getHomePrice());
-//        dto.setMonthlyFamilyIncome(calculateForm.getMonthlyFamilyIncome());
-//        dto.setLoanTerm(calculateForm.getLoanTerm());
-//        dto.setFamilyMembers(calculateForm.getFamilyMembers());
-//        dto.setHaveChildren(calculateForm.isHaveChildren());
-//        dto.setCity(calculateForm.getCity());
-//
-//        dto.setCalculateResultsDto(toResultsDto(calculateForm.getCalculateResults()));
 
         return new CalculateFormDto(
                 calculateForm.getId(),
@@ -76,7 +55,7 @@ public class CalculateMapper {
 
         CalculateResults calculateResults = new CalculateResults();
 
-        calculateResults.setId(calculateResultsDto.id());
+//        calculateResults.setId(calculateResultsDto.id());
         calculateResults.setMaxLoan(calculateResultsDto.maxLoan());
         calculateResults.setTotalInterestPaid(calculateResultsDto.totalInterestPaid());
         calculateResults.setAgreementFee(calculateResultsDto.agreementFee());
