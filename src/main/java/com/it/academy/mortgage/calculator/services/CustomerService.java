@@ -29,7 +29,12 @@ public class CustomerService {
                 newCustomer.name(),
                 newCustomer.phoneNumber(),
                 newCustomer.email(),
-                newCustomer.action()
+                newCustomer.action(),
+                newCustomer.familyMembers(),
+                newCustomer.haveChildren(),
+                newCustomer.homePrice(),
+                newCustomer.loanTerm(),
+                newCustomer.monthlyFamilyIncome()
         );
         customerRepository.save(customer);
     }
