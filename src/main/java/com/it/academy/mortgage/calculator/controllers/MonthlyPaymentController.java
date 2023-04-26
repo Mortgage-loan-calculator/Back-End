@@ -38,4 +38,17 @@ public class MonthlyPaymentController {
 
         return ResponseEntity.ok(monthlyResultsDto);
     }
+
+    @PostMapping("/interest/rate")
+    public double getTotalInterestRate (@RequestBody MonthlyPaymentDto monthlyPaymentDto) throws IOException {
+        return monthlyPaymentService.totalInterestPaid(monthlyPaymentDto.dealAmount(), monthlyPaymentDto.loanPeriod());
+    }
+    @PostMapping("/payment/sum")
+    public double getTotalPaymentSum (@RequestBody MonthlyPaymentDto monthlyPaymentDto) throws IOException {
+        return monthlyPaymentService.totalPaymentSum(monthlyPaymentDto.dealAmount(), monthlyPaymentDto.loanPeriod());
+    }
+    @GetMapping("/euribor")
+    public double getEuribor () throws IOException {
+       return monthlyPaymentService.fetchEuribor();
+    }
 }
