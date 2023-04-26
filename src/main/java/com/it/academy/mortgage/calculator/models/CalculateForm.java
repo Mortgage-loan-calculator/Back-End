@@ -17,7 +17,10 @@ public class CalculateForm {
     private int loanTerm;
     private int familyMembers;
     private boolean haveChildren;
-    private String city;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "detailed_form_id", referencedColumnName = "id")
+    private DetailedForm detailedForm; // TODO
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "calculate_form_id", referencedColumnName = "id")
@@ -71,12 +74,12 @@ public class CalculateForm {
         this.haveChildren = haveChildren;
     }
 
-    public String getCity() {
-        return city;
+    public DetailedForm getDetailedForm() {
+        return detailedForm;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setDetailedForm(DetailedForm detailedForm) {
+        this.detailedForm = detailedForm;
     }
 
     public CalculateResults getCalculateResults() {

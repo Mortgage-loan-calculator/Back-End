@@ -2,16 +2,19 @@ package com.it.academy.mortgage.calculator.mappers;
 
 import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import com.it.academy.mortgage.calculator.dto.CalculateResultsDto;
+import com.it.academy.mortgage.calculator.dto.DetailedFormDto;
 import com.it.academy.mortgage.calculator.models.CalculateForm;
 import com.it.academy.mortgage.calculator.models.CalculateResults;
+import com.it.academy.mortgage.calculator.models.DetailedForm;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CalculateMapper {
+public class CalculateMapper implements FormMapper<CalculateForm, CalculateFormDto, CalculateResults, CalculateResultsDto> {
 
+    @Override
     public CalculateForm fromFormDto (CalculateFormDto calculateFormDto) {
         if (calculateFormDto == null) {
             return null;
@@ -23,40 +26,20 @@ public class CalculateMapper {
         calculateForm.setHomePrice(calculateFormDto.homePrice());
         calculateForm.setMonthlyFamilyIncome(calculateFormDto.monthlyFamilyIncome());
         calculateForm.setLoanTerm(calculateFormDto.loanTerm());
-        calculateForm.setFamilyMembers(calculateFormDto.familyMembers());
+        calculateForm.setFamilyMembers(calculateFormDto.adults());
         calculateForm.setHaveChildren(calculateFormDto.haveChildren());
-        calculateForm.setCity(calculateFormDto.city());
+        calculateForm.setDetailedForm(calculateForm.getDetailedForm());
 
         calculateForm.setCalculateResults(fromResultsDto(calculateFormDto.calculateResultsDto()));
 
         return calculateForm;
     }
 
+    @Override
     public CalculateFormDto toFormDto (CalculateForm calculateForm){
         if (calculateForm == null) {
             return null;
         }
-
-//        CalculateFormDto dto =
-//                new CalculateFormDto(
-//                calculateForm.getId(),
-//                calculateForm.getHomePrice(),
-//                calculateForm.getMonthlyFamilyIncome(),
-//                calculateForm.getLoanTerm(),
-//                calculateForm.getFamilyMembers(),
-//                calculateForm.isHaveChildren(),
-//                calculateForm.getCity(),
-//                toResultsDto(calculateForm.getCalculateResults()));
-
-//        dto.setId(calculateForm.getId());
-//        dto.setHomePrice(calculateForm.getHomePrice());
-//        dto.setMonthlyFamilyIncome(calculateForm.getMonthlyFamilyIncome());
-//        dto.setLoanTerm(calculateForm.getLoanTerm());
-//        dto.setFamilyMembers(calculateForm.getFamilyMembers());
-//        dto.setHaveChildren(calculateForm.isHaveChildren());
-//        dto.setCity(calculateForm.getCity());
-//
-//        dto.setCalculateResultsDto(toResultsDto(calculateForm.getCalculateResults()));
 
         return new CalculateFormDto(
                 calculateForm.getId(),
@@ -65,10 +48,11 @@ public class CalculateMapper {
                 calculateForm.getLoanTerm(),
                 calculateForm.getFamilyMembers(),
                 calculateForm.isHaveChildren(),
-                calculateForm.getCity(),
-                toResultsDto(calculateForm.getCalculateResults()));
+                toResultsDto(calculateForm.getCalculateResults()),
+                toDetailedDto(calculateForm.getDetailedForm()));
     }
 
+    @Override
     public CalculateResults fromResultsDto (CalculateResultsDto calculateResultsDto){
         if (calculateResultsDto == null) {
             return null;
@@ -85,6 +69,7 @@ public class CalculateMapper {
         return calculateResults;
     }
 
+    @Override
     public CalculateResultsDto toResultsDto (CalculateResults calculateResults){
         if (calculateResults == null) {
             return null;
@@ -98,6 +83,22 @@ public class CalculateMapper {
                 calculateResults.getTotalPaymentSum());
     }
 
+    public DetailedFormDto toDetailedDto (DetailedForm detailedForm){
+        if (detailedForm == null) {
+            return null;
+        }
+
+        return new DetailedFormDto(
+                detailedForm.getId(),
+                detailedForm.getCity(),
+                detailedForm.getBuyOption(),
+                detailedForm.isStudentLoan(),
+                detailedForm.isOtherLoans(),
+                detailedForm.getFamilyMembers(),
+                detailedForm.isPoliticallyExposed());
+    }
+
+    @Override
     public List<CalculateResultsDto> toResultsDtoList (List<CalculateResults> entities){
         List<CalculateResultsDto> dtos = new ArrayList<>();
 
@@ -107,6 +108,7 @@ public class CalculateMapper {
         return dtos;
     }
 
+    @Override
     public List<CalculateFormDto> toDtoList (List<CalculateForm> entities){
         List<CalculateFormDto> dtos = new ArrayList<>();
 
