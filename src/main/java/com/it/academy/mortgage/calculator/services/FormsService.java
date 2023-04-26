@@ -14,6 +14,6 @@ public class FormsService extends EuriborFetcher {
         value = Math.floor(value);
         value = value / Math.pow(10, 2);
 
-        return value;
+        return Math.round(value);
     }
 }
