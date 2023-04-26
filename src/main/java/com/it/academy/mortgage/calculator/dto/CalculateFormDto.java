@@ -13,8 +13,8 @@ public record CalculateFormDto(long id,
                                @PositiveOrZero(message = "Monthly family income should be a positive number")
                                Integer monthlyFamilyIncome,
                                int loanTerm,
-                               int familyMembers,
+                               int adults, // TODO PATIKRINT, PAKEISTA IS familyMembers
                                boolean haveChildren,
-                               String city,
-                               CalculateResultsDto calculateResultsDto) {
+                               CalculateResultsDto calculateResultsDto,
+                               DetailedFormDto detailedFormDto) {
 }
