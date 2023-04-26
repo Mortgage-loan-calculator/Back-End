@@ -2,6 +2,7 @@ package com.it.academy.mortgage.calculator.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import java.net.InetAddress;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customer")
+@NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +19,6 @@ public class Customer {
     @NotBlank
     private String name;
     @Column(name = "number")
-    @Length(min = 1, message = "Phone number too short")
     @Length(max = 20, message = "Phone number too long")
     private String phoneNumber;
 
@@ -26,39 +27,41 @@ public class Customer {
     private String email;
     @Column(name = "ip_address")
     private String ipAddress;
-    private final LocalDateTime time;
+    private LocalDateTime time;
     private String action;
-    @NotNull
-    @Min(value = 0L, message = "familyMembers must be positive")
-    private Integer familyMembers;
-    @NotNull
-    private Boolean haveChildren;
-    @NotNull
-    @Min(value = 0L, message = "homePrice must be positive")
-    private Integer homePrice;
-    @NotNull
-    @Min(value = 0L, message = "loanTerm must be positive")
-    private Integer loanTerm;
-    @NotNull
-    @Min(value = 0L, message = "monthlyFamilyIncome must be positive")
-    private Integer monthlyFamilyIncome;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "calculate_form_id", referencedColumnName = "id")
+    private CalculateForm calculateForm;
+//    @NotNull
+//    @Min(value = 0L, message = "familyMembers must be positive")
+//    private Integer familyMembers;
+//    @NotNull
+//    private Boolean haveChildren;
+//    @NotNull
+//    @Min(value = 0L, message = "homePrice must be positive")
+//    private Integer homePrice;
+//    @NotNull
+//    @Min(value = 0L, message = "loanTerm must be positive")
+//    private Integer loanTerm;
+//    @NotNull
+//    @Min(value = 0L, message = "monthlyFamilyIncome must be positive")
+//    private Integer monthlyFamilyIncome;
 
-    public Customer() {
-        this.time = LocalDateTime.now();
-    }
+//    public Customer() {
+//        this.time = LocalDateTime.now();
+//    }
 
-    public Customer(String name, String phoneNumber, String email, String action, Integer familyMembers, Boolean haveChildren, Integer homePrice, Integer loanTerm, Integer monthlyFamilyIncome) throws UnknownHostException {
+//    public Customer (LocalDateTime time){
+//        this.time = time;
+//    }
+    public Customer(String name, String phoneNumber, String email, String action, CalculateForm calculateForm) throws UnknownHostException {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.ipAddress = InetAddress.getLocalHost().getHostAddress();
-        this.time = LocalDateTime.now();
+        this.time = LocalDateTime.now(); //pasalint localdate, perkelt i servica
         this.action = action;
-        this.familyMembers = familyMembers;
-        this.haveChildren = haveChildren;
-        this.homePrice = homePrice;
-        this.loanTerm = loanTerm;
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
+        this.calculateForm = calculateForm;
     }
 
     public String getId() {
@@ -113,44 +116,12 @@ public class Customer {
         this.action = action;
     }
 
-    public Integer getFamilyMembers() {
-        return familyMembers;
+    public CalculateForm getCalculateForm() {
+        return calculateForm;
     }
 
-    public void setFamilyMembers(Integer familyMembers) {
-        this.familyMembers = familyMembers;
-    }
-
-    public Boolean getHaveChildren() {
-        return haveChildren;
-    }
-
-    public void setHaveChildren(Boolean haveChildren) {
-        this.haveChildren = haveChildren;
-    }
-
-    public Integer getHomePrice() {
-        return homePrice;
-    }
-
-    public void setHomePrice(Integer homePrice) {
-        this.homePrice = homePrice;
-    }
-
-    public Integer getLoanTerm() {
-        return loanTerm;
-    }
-
-    public void setLoanTerm(Integer loanTerm) {
-        this.loanTerm = loanTerm;
-    }
-
-    public Integer getMonthlyFamilyIncome() {
-        return monthlyFamilyIncome;
-    }
-
-    public void setMonthlyFamilyIncome(Integer monthlyFamilyIncome) {
-        this.monthlyFamilyIncome = monthlyFamilyIncome;
+    public void setCalculateForm(CalculateForm calculateForm) {
+        this.calculateForm = calculateForm;
     }
 
     @Override
@@ -162,6 +133,8 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", ipAddress='" + ipAddress + '\'' +
                 ", time=" + time +
+                ", action='" + action + '\'' +
+                ", calculateForm=" + calculateForm +
                 '}';
     }
 }

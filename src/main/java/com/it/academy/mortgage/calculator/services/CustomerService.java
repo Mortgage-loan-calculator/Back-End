@@ -1,10 +1,12 @@
 package com.it.academy.mortgage.calculator.services;
 
+import com.it.academy.mortgage.calculator.dto.CalculateFormDto;
 import com.it.academy.mortgage.calculator.exceptions.CustomerNotFoundException;
+import com.it.academy.mortgage.calculator.mappers.CalculateMapper;
+import com.it.academy.mortgage.calculator.models.CalculateForm;
 import com.it.academy.mortgage.calculator.models.Customer;
 import com.it.academy.mortgage.calculator.models.CustomerRequest;
 import com.it.academy.mortgage.calculator.repositories.CustomerRepository;
-import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,26 +19,34 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final CalculateMapper calculateMapper;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, CalculateMapper calculateMapper) {
         this.customerRepository = customerRepository;
+        this.calculateMapper = calculateMapper;
     }
 
     public List<Customer> fetchAllCustomers() {return customerRepository.findAll();}
 
-    public void addCustomer(CustomerRequest newCustomer) throws UnknownHostException {
+    public CustomerRequest addCustomer(CustomerRequest newCustomer) throws UnknownHostException {
+        CalculateForm calculateForm = calculateMapper.fromFormDto(newCustomer.calculateFormDto());
         Customer customer = new Customer(
                 newCustomer.name(),
                 newCustomer.phoneNumber(),
                 newCustomer.email(),
                 newCustomer.action(),
-                newCustomer.familyMembers(),
-                newCustomer.haveChildren(),
-                newCustomer.homePrice(),
-                newCustomer.loanTerm(),
-                newCustomer.monthlyFamilyIncome()
+                calculateForm
         );
         customerRepository.save(customer);
+        CalculateFormDto calculateFormDto = calculateMapper.toFormDto(customer.getCalculateForm());
+        return new CustomerRequest(
+                customer.getId(),
+                customer.getName(),
+                customer.getPhoneNumber(),
+                customer.getEmail(),
+                customer.getAction(),
+                calculateMapper.toFormDto(customer.getCalculateForm())
+        );
     }
 
     public void deleteCustomerById(String id) {customerRepository.deleteById(id);}
