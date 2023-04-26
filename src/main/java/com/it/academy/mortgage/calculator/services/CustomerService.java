@@ -7,6 +7,7 @@ import com.it.academy.mortgage.calculator.models.CalculateForm;
 import com.it.academy.mortgage.calculator.models.Customer;
 import com.it.academy.mortgage.calculator.models.CustomerRequest;
 import com.it.academy.mortgage.calculator.repositories.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
+
     private final CalculateMapper calculateMapper;
 
     public CustomerService(CustomerRepository customerRepository, CalculateMapper calculateMapper) {
@@ -38,6 +43,7 @@ public class CustomerService {
                 calculateForm
         );
         customerRepository.save(customer);
+        sendEmailToCustomer(customer);
         CalculateFormDto calculateFormDto = calculateMapper.toFormDto(customer.getCalculateForm());
         return new CustomerRequest(
                 customer.getId(),
@@ -58,4 +64,14 @@ public class CustomerService {
     public ResponseEntity<Customer> fetchCustomerById(String id) throws CustomerNotFoundException {
         return new ResponseEntity<>(customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id)), HttpStatus.ACCEPTED);
     }
+
+    private void sendEmailToCustomer(Customer customer){
+        emailSenderService.sendEmail(
+                customer.getEmail(),
+                "Application for mortgage at Team SwEB",
+                "We got your information and will get back to you shortly!!! \n "
+        );
+
+    }
+
 }
