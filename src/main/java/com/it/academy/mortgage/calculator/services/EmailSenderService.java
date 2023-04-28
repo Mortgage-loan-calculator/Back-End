@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailSenderService {
+
     @Autowired
     private JavaMailSender mailSender;
 
     public void sendEmail(String toEmail, String subject, String body){
         SimpleMailMessage message= new SimpleMailMessage();
-        message.setFrom("mortgage.calculator.noreply@gmail.com");
+        message.setFrom("mortgage.calculator@outlook.com");
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);

@@ -22,7 +22,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     @Autowired
-    private EmailSenderService emailSenderService;
+    private EmailService emailService;
 
     private final CalculateMapper calculateMapper;
 
@@ -66,11 +66,7 @@ public class CustomerService {
     }
 
     private void sendEmailToCustomer(Customer customer){
-        emailSenderService.sendEmail(
-                customer.getEmail(),
-                "Application for mortgage at Team SwEB",
-                "We got your information and will get back to you shortly!!! \n "
-        );
+        emailService.sendEmail(customer.getEmail());
 
     }
 
