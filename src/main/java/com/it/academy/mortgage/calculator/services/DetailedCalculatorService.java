@@ -41,9 +41,24 @@ public class DetailedCalculatorService extends CalculatorService {
         return formatDecimal(calculateFormDto.homePrice() * loanState.getLoanAmount());
     }
 
+    public CalculateResultsDto calculateDetailedResults(CalculateFormDto calculateFormDto) {
+        CalculateResultsDto calculateResultsDto = null;
+        try {
+            calculateResultsDto = new CalculateResultsDto(
+                    calculateFormDto.id(),
+                    maxLoanDetailed(calculateFormDto),
+                    totalInterestPaid(calculateFormDto),
+                    agreementFee(calculateFormDto),
+                    totalPaymentSum(calculateFormDto));
+        } catch (IOException e) {
+            LOGGER.error("Error: " + e);
+        }
+        return calculateResultsDto;
+    }
+
     public CalculateResultsDto saveLoanDetailsAndResults(CalculateFormDto calculateFormDto) {
 
-        CalculateResultsDto calculateResultsDto = calculateResults(calculateFormDto);
+        CalculateResultsDto calculateResultsDto = calculateDetailedResults(calculateFormDto);
 
         CalculateFormDto calculateFormDtoNew =
                 new CalculateFormDto(

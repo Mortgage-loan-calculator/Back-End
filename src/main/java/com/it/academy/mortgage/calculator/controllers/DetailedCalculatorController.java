@@ -26,7 +26,11 @@ public class DetailedCalculatorController {
     @PostMapping
     public CalculateResultsDto sendData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
         return detailedCalculatorService.saveLoanDetailsAndResults(calculateFormDto);
-//        return calculatorService.saveLoanDetailsAndResults(calculateFormDto);
+    }
+
+    @PostMapping("/results")
+    public CalculateResultsDto calculateData(@Valid @RequestBody CalculateFormDto calculateFormDto) {
+        return detailedCalculatorService.calculateDetailedResults(calculateFormDto);
     }
 
     @GetMapping("/forms")

@@ -24,7 +24,7 @@ public class CalculatorService extends FormsService {
     protected final CalculateFormRepository calculateFormRepository;
     protected final CalculateResultsRepository calculateResultsRepository;
     protected final CalculateMapper calculateMapper;
-    private final Logger LOGGER = LoggerFactory.getLogger(CalculatorService.class);
+    protected final Logger LOGGER = LoggerFactory.getLogger(CalculatorService.class);
 
     public CalculatorService(CalculateFormRepository calculateFormRepository, CalculateResultsRepository calculateResultsRepository, CalculateMapper calculateMapper) {
         this.calculateFormRepository = calculateFormRepository;
