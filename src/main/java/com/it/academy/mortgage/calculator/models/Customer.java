@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "customer")
@@ -59,7 +60,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.ipAddress = InetAddress.getLocalHost().getHostAddress();
-        this.time = LocalDateTime.now(); //pasalint localdate, perkelt i servica
+        this.time = LocalDateTime.now(ZoneId.of("Europe/Vilnius")); //pasalint localdate, perkelt i servica
         this.action = action;
         this.calculateForm = calculateForm;
     }
