@@ -23,7 +23,7 @@ public class EmailSenderService {
     private final Logger LOGGER = LoggerFactory.getLogger(CalculatorService.class);
 
     public void sendEmail(String toEmail) {
-        Email from = new Email("mortgage.calculator@outlook.com");
+        Email from = new Email("mortgage.calculator.sweb@outlook.com");
         Email to = new Email(toEmail);
         Content emailContent = new Content("text/html", "We got your information and will get back to you shortly!!!");
         Mail mail = new Mail(from, "Application for mortgage at Team sWEB", to, emailContent);
