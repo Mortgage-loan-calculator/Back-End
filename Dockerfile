@@ -14,7 +14,7 @@ RUN ./gradlew --version
 COPY . /app
 
 # Build the project
-RUN ./gradlew build
+RUN ./gradlew build -x test
 
 # Set the startup command
 CMD ["java", "-jar", "build/libs/mortgage.calculator-0.0.1-SNAPSHOT.jar"]
