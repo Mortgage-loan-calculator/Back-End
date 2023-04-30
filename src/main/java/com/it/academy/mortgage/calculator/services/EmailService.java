@@ -10,9 +10,6 @@ public class EmailService {
     private EmailSenderService emailSenderService;
 
     public void sendEmail(String toEmail) {
-        String subject = "Application for mortgage at Team SwEB";
-        String body = "We got your information and will get back to you shortly!!! \n";
-
-        emailSenderService.sendEmail(toEmail, subject, body);
+        emailSenderService.sendEmail(toEmail);
     }
 }
