@@ -66,7 +66,7 @@ public class DetailedCalculatorService extends CalculatorService {
                         calculateFormDto.homePrice(),
                         calculateFormDto.monthlyFamilyIncome(),
                         calculateFormDto.loanTerm(),
-                        calculateFormDto.adults(),
+                        calculateFormDto.familyMembers(),
                         calculateFormDto.haveChildren(),
                         calculateResultsDto,
                         calculateFormDto.detailedFormDto()
