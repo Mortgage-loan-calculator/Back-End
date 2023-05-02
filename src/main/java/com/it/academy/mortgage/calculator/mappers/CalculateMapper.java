@@ -26,7 +26,7 @@ public class CalculateMapper implements FormMapper<CalculateForm, CalculateFormD
         calculateForm.setHomePrice(calculateFormDto.homePrice());
         calculateForm.setMonthlyFamilyIncome(calculateFormDto.monthlyFamilyIncome());
         calculateForm.setLoanTerm(calculateFormDto.loanTerm());
-        calculateForm.setFamilyMembers(calculateFormDto.adults());
+        calculateForm.setFamilyMembers(calculateFormDto.familyMembers());
         calculateForm.setHaveChildren(calculateFormDto.haveChildren());
         calculateForm.setDetailedForm(calculateForm.getDetailedForm());
 
